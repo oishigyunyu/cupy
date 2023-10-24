@@ -26,7 +26,7 @@ class vectorize(object):
             cache=False, signature=None):
         """
         Args:
-            pyfunc (callable): The target python funciton.
+            pyfunc (callable): The target python function.
             otypes (str or list of dtypes, optional): The output data type.
             doc (str or None): The docstring for the function.
             excluded: Currently not supported.
@@ -66,7 +66,8 @@ class vectorize(object):
                 if not isinstance(t, _cuda_types.Scalar):
                     raise TypeError(f'Invalid return type: {return_type}')
                 dtypes.append(t.dtype)
-                code += f'out{i} = thrust::get<{i}>(out);\n'
+                # STD is defined in carray.cuh
+                code += f'out{i} = STD::get<{i}>(out);\n'
         else:
             raise TypeError(f'Invalid return type: {return_type}')
 
