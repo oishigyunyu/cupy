@@ -25,6 +25,7 @@ cdef class _ndarray_base:
 
     cdef _init_fast(self, const shape_t& shape, dtype, bint c_order)
     cpdef item(self)
+    cpdef itemset(self, args)
     cpdef tolist(self)
     cpdef bytes tobytes(self, order=*)
     cpdef tofile(self, fid, sep=*, format=*)

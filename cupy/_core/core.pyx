@@ -482,6 +482,16 @@ cdef class _ndarray_base:
         return self.get().tolist()
 
     # TODO(okuta): Implement itemset
+    cpdef itemset(self, args):
+        """description
+        Insert scalar into an array (scalar is cast to array's dtype, if possible)
+        There must be at least 1 argument, and define the last argument as item.
+        Then, a.itemset(*args) is equivalent to but faster than a[args] = item.
+        The item should be a scalar value and args must select a single item in
+        the array a.
+        """
+        raise NotImplementedError  
+
     # TODO(okuta): Implement tostring
 
     cpdef bytes tobytes(self, order='C'):
